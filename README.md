@@ -1,23 +1,81 @@
-# python
-Repository to improve skills with Python
+# 🚀 FastAPI Python Learning Repository
 
-## Introduction
+Welcome to the **FastAPI Python Learning Repository** — a simple, interactive web API that introduces Python concepts using [FastAPI](https://fastapi.tiangolo.com/), a modern web framework for building APIs with Python 3.7+.
 
-<div align="center"><img  width="65%" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Python_logo_and_wordmark.svg/1280px-Python_logo_and_wordmark.svg.png" /></div>
-<br/>
-<br/>
+## 🔧 What Is This?
 
+This repository serves both as a:
 
-Python is a high-level, interpreted programming language that is easy to learn and widely used in a variety of applications.
+- Learning resource for **Python beginners**, and
+- Practical example of using **FastAPI** to build and serve content via an API.
 
-What does that mean?
+It converts static educational content about Python into a dynamic web app using FastAPI.
 
-"High-level" means that Python abstracts away a lot of the low-level details of programming, making it more accessible to beginners.
+## 🧠 Why FastAPI?
 
-"Interpreted" means that Python code is executed one line at a time, rather than compiled into an executable program. This makes it easier to write and test code because you can see the output of each line immediately, without having to go through the compile and build process.
+FastAPI is:
+- **Fast**: High-performance, thanks to Starlette and Pydantic.
+- **Easy to use**: Minimal boilerplate, great for beginners.
+- **Async-ready**: Built on async support for modern Python.
+- **Well-documented**: Comes with automatic Swagger docs out of the box.
 
-Python's syntax is also very readable, meaning that the code is written in a way that is easy to understand for humans. This makes it easier to write and maintain code, even as your programs become more complex.
+## 📁 Project Structure
 
-Python is used in a wide range of applications, from web development to scientific computing to artificial intelligence. This means that there are many libraries and frameworks available to developers that can help them write code more efficiently.
+```
+.
+├── main.py         # FastAPI app with HTML response
+├── README.md       # This file
+└── requirements.txt  # (Optional) List of dependencies
+```
 
-Finally, Python has a large and active community of developers who are constantly contributing to the language's development and maintenance of libraries and frameworks. This means that if you have a question or a problem, there is likely someone who has already experienced it and can help you out.
+## 🚀 How to Run It
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/gil-son/fast-api/.git
+cd fast-api
+```
+
+### 2. Create a virtual environment (optional but recommended)
+
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+### 3. Install FastAPI and Uvicorn
+
+```bash
+pip install fastapi uvicorn
+```
+
+### 4. Start the server
+
+```bash
+uvicorn main:app --reload
+```
+
+Then open [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser.
+
+## 📖 What You'll See
+
+An educational page explaining Python as:
+
+- A **high-level**, beginner-friendly language
+- An **interpreted** scripting language
+- A tool with readable syntax, strong community support, and wide applicability
+
+All this is served using FastAPI as an HTML page.
+
+## 📌 Coming Soon (Ideas)
+
+- More Python learning pages
+- REST endpoints for interactive Python quizzes
+- Backend + frontend separation
+- Deployment instructions
+
+## 🛠️ Dependencies
+
+- xxx
+- xxx
