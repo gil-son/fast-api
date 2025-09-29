@@ -57,27 +57,101 @@ This project relies on the following Python packages:
 - **[pytest-cov](https://pytest-cov.readthedocs.io/)** – A pytest plugin that generates coverage reports, helping to ensure test completeness.
 - **[taskipy](https://github.com/taskipy/taskipy)** – A simple task runner that allows you to define reusable commands (e.g., run, test, lint) in `pyproject.toml`.
 - **[ruff](https://github.com/astral-sh/ruff)** – A fast Python linter and code formatter, ensuring code style consistency and catching errors early.
+  In this project, Ruff serves two main purposes:  
+  - **Static code analyzer (linter):** ensures we are not violating programming best practices.  
+  - **Code formatter:** enforces a consistent coding style, based on **PEP-8**.  
+
 
 Together, these tools support development, testing, linting, formatting, and running the application smoothly.
 
-### 6. Understanding `pyproject.toml`
+### 6. Run the app
 
-Configured tasks:
+```
+task run
+```
+
+You can access on **http://127.0.0.1:8000/**
+
+## 7. API Documentation
+
+FastAPI automatically generates interactive documentation:
+
+- Swagger UI (interactive): **http://127.0.0.1:8000/docs**
+- ReDoc (static): **http://127.0.0.1:8000/redoc**
+
+### 8. Understanding `pyproject.toml`
+
+
+#### Ruff configuration:
+
+```
+[tool.ruff]
+line-length = 79              # max line length (PEP 8: 80 columns)
+extend-exclude = ["migrations"]  # exclude migrations folder
+```
+
+#### Configured tasks:
+
+Each task defines a command and its purpose:
+
 ```toml
 [tool.taskipy.tasks]
-lint = "ruff check"
-pre_format = "ruff check --fix"
-format = "ruff format"
-run = "fastapi dev fast_zero/app.py"
-pre_test = "task lint"
-test = "pytest -s -x --cov=fast_zero -vv"
-post_test = "coverage html"
+lint = "ruff check"                # run static analysis
+pre_format = "ruff check --fix"    # auto-fix lint issues
+format = "ruff format"             # format code
+run = "fastapi dev fast_zero/app.py"   # run the project
+pre_test = "task lint"             # lint before tests
+test = "pytest -s -x --cov=fast_zero -vv"  # run tests with coverage
+post_test = "coverage html"        # generate coverage report
 ```
 
-### 7. Run the app
-```bash
-fastapi dev fast_zero/app.py
+- To execute a task, type task followed by the task name. Example:
+
 ```
+task run
+```
+
+
+- Some tasks are chained in a sequence. For example, when running tests:
+
+```
+pre_test = 'task lint'
+test = 'pytest -s -x --cov=fast_zero -vv'
+post_test = 'coverage html'
+```
+
+Here:
+
+- pre_test is always executed first (lint check).
+- If it passes, the test command runs.
+- Finally, post_test generates the coverage report.
+
+
+```mermaid
+
+flowchart TD
+    A[pre_test: lint check] -->|passes| B[test: run pytest with coverage]
+    B --> C[post_test: generate coverage report]
+    A -->|fails| D[stop execution]
+
+```
+
+#### Configured linter rules:
+
+This section defines the practices and style checks followed in the project:
+
+```
+[tool.ruff.lint]
+preview = true
+select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+```
+
+- I (isort): import sorting
+- F (pyflakes): find errors
+- E (pycodestyle): style errors
+- W (pycodestyle): style warnings
+- PL (pylint): pylint errors
+- PT (flake8-pytest-style): pytest style violations
 
 ---
 
